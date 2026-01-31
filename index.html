@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moltbot Migration: VPS to Cloudflare Serverless</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .gradient-text { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%); }
+    </style>
+</head>
+<body class="bg-[#0b0c10] text-gray-300 leading-relaxed overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[80vh] flex items-center justify-center pt-20 px-4 hero-gradient">
+        <div class="max-w-4xl text-center z-10">
+            <div class="inline-block px-4 py-1.5 mb-6 glass rounded-full text-xs font-semibold tracking-widest text-[#6366f1] uppercase">
+                Technical Case Study
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                From VPS to <span class="gradient-text">Serverless Edge</span>
+            </h1>
+            <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Migrating a production Clawdbot instance from Sakura VPS to Cloudflare Workers & Sandbox with zero session loss.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#architecture" class="px-8 py-3 bg-[#6366f1] text-white rounded-lg font-semibold hover:bg-[#4f46e5] transition-all duration-300 shadow-lg shadow-indigo-500/20">
+                    Read Architecture
+                </a>
+                <a href="https://github.com/[YOUR_USERNAME]/[YOUR_REPO]" class="px-8 py-3 glass text-white rounded-lg font-semibold hover:bg-white/10 transition-all duration-300">
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Grid -->
+    <section class="max-w-6xl mx-auto px-4 py-20">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="glass p-8 rounded-2xl text-center">
+                <div class="text-3xl font-bold text-white mb-2">99.9%</div>
+                <div class="text-sm text-gray-500 uppercase tracking-wider">Uptime SLA</div>
+            </div>
+            <div class="glass p-8 rounded-2xl text-center">
+                <div class="text-3xl font-bold text-white mb-2">~$5/mo</div>
+                <div class="text-sm text-gray-500 uppercase tracking-wider">Operational Cost</div>
+            </div>
+            <div class="glass p-8 rounded-2xl text-center">
+                <div class="text-3xl font-bold text-white mb-2">< 1s</div>
+                <div class="text-sm text-gray-500 uppercase tracking-wider">Warm Latency</div>
+            </div>
+            <div class="glass p-8 rounded-2xl text-center">
+                <div class="text-3xl font-bold text-white mb-2">0</div>
+                <div class="text-sm text-gray-500 uppercase tracking-wider">Maintenance Req</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="max-w-6xl mx-auto px-4 py-20">
+        <div class="flex flex-col md:flex-row gap-16 items-center">
+            <div class="md:w-1/2">
+                <h2 class="text-3xl font-bold text-white mb-6">Cloud-Native Architecture</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center text-[#6366f1]">
+                            <i data-lucide="zap"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-1">Workers Proxy</h3>
+                            <p class="text-sm text-gray-500">A security-first reverse proxy handling Cloudflare Access JWT validation and WebSocket interception.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center text-[#0ea5e9]">
+                            <i data-lucide="box"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-1">Sandbox Container</h3>
+                            <p class="text-sm text-gray-500">Isolation at the edge. Running Node.js 22 with the Clawdbot Gateway in a firecracker-based VM.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 glass rounded-xl flex items-center justify-center text-[#10b981]">
+                            <i data-lucide="database"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-1">R2 Persistence</h3>
+                            <p class="text-sm text-gray-500">Cron-driven 5-min sync ensures configuration and skills persist across container lifecycles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative">
+                <div class="absolute inset-0 bg-indigo-500 opacity-10 blur-[100px] -z-10"></div>
+                <div class="glass p-4 rounded-xl shadow-2xl overflow-hidden">
+                    <pre class="text-[10px] md:text-xs font-mono text-gray-400 bg-black/50 p-4 rounded-lg"><code>// Persistent Storage Orchestration
+async function syncToR2(sandbox, env) {
+  const config = await sandbox.startProcess('cat /root/.clawdbot/config.json');
+  await env.MOLTBOT_BUCKET.put('backup.json', config.stdout);
+}
+
+// Scheduled Cron Trigger
+export default {
+  scheduled: async (event, env) => {
+    await syncToR2(sandbox, env);
+  }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Challenges Section -->
+    <section class="bg-white/5 py-24">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-white mb-12 text-center text-outfit">The Migration Challenges</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass p-8 rounded-2xl hover:border-[#6366f1]/50 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-white mb-4">OAuth Preservation</h3>
+                    <p class="text-sm text-gray-500 mb-6 font-light">Existing OpenAI Codex sessions needed to be migrated without re-authentication in a browserless environment.</p>
+                    <div class="bg-black/40 px-3 py-1 rounded text-[10px] text-gray-400 font-mono">Solution: Profile Overlaying</div>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass p-8 rounded-2xl hover:border-[#6366f1]/50 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-white mb-4">Execution Tracing</h3>
+                    <p class="text-sm text-gray-500 mb-6 font-light">Debugging "Code 1" crashes in a remote container requires deep visibility into shell initialization.</p>
+                    <div class="bg-black/40 px-3 py-1 rounded text-[10px] text-gray-400 font-mono">Solution: bash -x + 2>&1 proxy</div>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass p-8 rounded-2xl hover:border-[#6366f1]/50 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-white mb-4">WebSocket Shim</h3>
+                    <p class="text-sm text-gray-500 mb-6 font-light">Proxying real-time chat data through Workers requires careful state management of WebSocket pairs.</p>
+                    <div class="bg-black/40 px-3 py-1 rounded text-[10px] text-gray-400 font-mono">Solution: Custom Proxy Handler</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="max-w-4xl mx-auto px-4 py-32 text-center">
+        <h2 class="text-4xl font-bold text-white mb-8">Ready to move to the Edge?</h2>
+        <p class="text-gray-400 mb-12 font-light">
+            Clone the repository and follow the VPS migration guide. Experience the power of Cloudflare Sandbox today.
+        </p>
+        <div class="flex justify-center gap-4">
+            <a href="https://github.com/[YOUR_USERNAME]/[YOUR_REPO]" class="px-10 py-4 bg-white text-black rounded-full font-bold hover:bg-gray-200 transition-all shadow-lg shadow-white/10 uppercase tracking-widest text-xs">
+                Get the Code
+            </a>
+            <a href="https://buymeacoffee.com/[YOUR_USER]" class="px-10 py-4 glass text-white rounded-full font-bold hover:bg-white/10 transition-all uppercase tracking-widest text-xs">
+                Buy me a Coffee
+            </a>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center text-sm text-gray-600">
+        &copy; 2026 Moltbot Cloud Project. Built with &hearts; for the Serverless Community.
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
